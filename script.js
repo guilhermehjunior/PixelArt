@@ -1,3 +1,5 @@
+window.onload = () => {
+
 const pixelBoard = document.querySelector('#pixel-board');
 
 function creatingPixelDivsCollumns(row, colunas) {
@@ -35,7 +37,7 @@ function addingEventListenersToPalette(elements) {
 
 addingEventListenersToPalette(paletteColors);
 
-const pixels = document.querySelectorAll('.pixel');
+let pixels = document.querySelectorAll('.pixel');
 
 function addingEventListenersToPixels() {
   for (let index = 0; index < pixels.length; index += 1) {
@@ -47,7 +49,7 @@ function addingEventListenersToPixels() {
   }
 }
 
-addingEventListenersToPixels();
+addingEventListenersToPixels(pixels);
 
 function clearingTheBoard() {
   const button = document.querySelector('#clear-board');
@@ -73,12 +75,14 @@ function boardSize() {
     if (input.value < 5) input.value = 5;
     if (input.value > 50) input.value = 50;
     creatingPixelDivs(input.value);
+    pixels = document.querySelectorAll('.pixel');
+    addingEventListenersToPixels();
   });
 }
 
 boardSize();
 
-window.onload = () => {
+
   const blackColor = document.querySelector('#first-color');
   blackColor.classList.add('selected');
   // Ideia retirada de https://wallacemaxters.com.br/blog/2021/02/20/como-gerar-cores-aleatorias-no-javascript
